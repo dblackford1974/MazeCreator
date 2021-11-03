@@ -72,4 +72,6 @@ crashlytics-build.properties
 
 # For MacOS
 .DS_Store
-
+pullfix
+pullit
+pushit
