@@ -48,7 +48,7 @@ abstract public class MazeGenerator : MonoBehaviour
     protected float cellDelay = 0.04f;
 
     protected MazeGrid grid;
-    
+
     public void Generate(MazeGrid _grid)
     {
         grid = _grid;
@@ -65,7 +65,8 @@ abstract public class MazeGenerator : MonoBehaviour
     protected void SetComplete()
     {
         grid.focus.Set(0,0);
-        Debug.Log("Done!");
+
+        grid.SaveMaze();
     }
 
     protected void SetFocus(MazeCell c)

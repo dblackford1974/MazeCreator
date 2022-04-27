@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MazeCell
 {
-    const int dirs = 4;
+    public const int dirs = 4;
 
     //Row and col are set to 0 for padding cells
     public int row;

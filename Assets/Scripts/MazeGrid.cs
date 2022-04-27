@@ -1,7 +1,6 @@
-﻿using System.Collections;
+﻿using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class MazeGrid : MonoBehaviour
 {
@@ -11,6 +10,37 @@ public class MazeGrid : MonoBehaviour
     public int cols;
 
     public GridFocus focus;
+
+    public string outputPath;
+    public string outputFile;
+
+    //File format is 1 int per row:
+    //  0 - Rows
+    //  1 - Cols
+    //  2 + n*4 - 4 directions per cell, 1 if blocked, else 0
+    public void SaveMaze()
+    {
+        if ((outputFile != null) && (outputFile.Trim() != ""))
+        {
+            string path = System.IO.Path.Combine(outputPath, outputFile);
+            using (StreamWriter output = new StreamWriter(path))
+            {
+                output.WriteLine(rows);
+                output.WriteLine(cols);
+
+                for (int i = 1; i <= rows; i++)
+                {
+                    for (int j = 1; j <= cols; j++)
+                    {
+                        for (int k = 0; k < MazeCell.dirs; k++)
+                        {
+                            output.WriteLine((cells[i,j][k]) ? "0" : "1");
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     public int cellCount
     {
